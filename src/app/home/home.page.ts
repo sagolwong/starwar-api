@@ -1,12 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { StarwarService } from '../services/starwar.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
-  constructor() {}
+  constructor(
+    private starwarService:StarwarService
+  ) {}
+  ngOnInit(){
+    this.starwarService.loadPeople(1).subscribe(peoples =>{
+      console.log(peoples)
+    })
+  }
 
 }
